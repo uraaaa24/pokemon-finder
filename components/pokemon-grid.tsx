@@ -12,7 +12,11 @@ interface PokemonGridProps {
 export function PokemonGrid({ pokemonList }: PokemonGridProps) {
   const [searchText, setSearchText] = useState('')
 
-  console.log(pokemonList)
+  const searchFilter = (pokemonList: any) => {
+    return pokemonList.filter((pokemon: any) => pokemon.name.toLowerCase().includes(searchText.toLowerCase()))
+  }
+
+  const filteredPokemonList = searchFilter(pokemonList)
 
   return (
     <>
@@ -32,7 +36,7 @@ export function PokemonGrid({ pokemonList }: PokemonGridProps) {
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0  lg:grid-cols-3 lg:text-left gap-6">
-        {pokemonList.map((pokemon: any) => (
+        {filteredPokemonList.map((pokemon: any) => (
           <PokemonCard key={pokemon.name} name={pokemon.name} />
         ))}
       </div>
