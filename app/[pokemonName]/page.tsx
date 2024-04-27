@@ -11,11 +11,13 @@ export default async function PokemonPage({
 }) {
   const { pokemonName } = params
 
+  const displayPokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)
+
   const pokemonData = await getPokemonByName(pokemonName)
 
   return (
     <>
-      <h1 className="text-4xl text-bold pt-4">{pokemonName}</h1>
+      <h1 className="text-4xl text-bold pt-4">{displayPokemonName}</h1>
       <div className="m-4" style={{ position: 'relative', width: '300px', height: '300px' }}>
         <PokemonImage image={pokemonData.sprites.other['official-artwork'].front_default} name={pokemonName} />
       </div>
