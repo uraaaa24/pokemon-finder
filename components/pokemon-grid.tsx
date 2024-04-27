@@ -5,8 +5,14 @@ import { PokemonCard } from './pokemon-card'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 
-export function PokemonGrid() {
+interface PokemonGridProps {
+  pokemonList: any
+}
+
+export function PokemonGrid({ pokemonList }: PokemonGridProps) {
   const [searchText, setSearchText] = useState('')
+
+  console.log(pokemonList)
 
   return (
     <>
@@ -26,9 +32,9 @@ export function PokemonGrid() {
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0  lg:grid-cols-3 lg:text-left gap-6">
-        <PokemonCard name="Pikachu" />
-        <PokemonCard name="Pikachu" />
-        <PokemonCard name="Pikachu" />
+        {pokemonList.map((pokemon: any) => (
+          <PokemonCard key={pokemon.name} name={pokemon.name} />
+        ))}
       </div>
     </>
   )
